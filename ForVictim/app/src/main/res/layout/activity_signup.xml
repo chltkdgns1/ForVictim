@@ -14,9 +14,6 @@
         android:text="회원가입"
         />
 
-
-
-
     <LinearLayout
         android:background="@drawable/button_background"
         android:layout_width="match_parent"
@@ -26,23 +23,47 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:layout_marginLeft="4dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="아이디"
-            android:background="@null"
-            />
+            android:weightSum="1"
+            android:layout_marginLeft="4dp">
+
+            <EditText
+                android:id="@+id/EditText_Id"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:hint="아이디"
+                android:background="@null"
+                />
+
+            <TextView
+                android:id="@+id/TextView_Id_Overlap"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:text="중복확인"
+                />
+
+
+        </LinearLayout>
+
 
         <EditText
+            android:id="@+id/EditText_Pass"
             android:layout_marginLeft="4dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:inputType="textPassword"
             android:hint="비밀번호"
             android:background="@null"
             />
 
         <EditText
+            android:inputType="textPassword"
+            android:id="@+id/EditText_Pass_Again"
             android:layout_marginLeft="4dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -64,6 +85,7 @@
         >
 
         <EditText
+            android:id="@+id/EditText_Name"
             android:layout_marginLeft="4dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -88,6 +110,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/TextView_Man"
                     android:gravity="center"
                     android:layout_weight="0.5"
                     android:layout_width="0dp"
@@ -96,6 +119,7 @@
                     android:text="남자"
                     />
                 <TextView
+                    android:id="@+id/TextView_Girl"
                     android:gravity="center"
                     android:layout_weight="0.5"
                     android:layout_width="0dp"
@@ -116,12 +140,63 @@
 
             <TextView
                 android:gravity="center"
-                android:layout_weight="0.2"
+                android:layout_weight="0.15"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:text="생일"
+                android:text="생일"/>
 
+            <EditText
+                android:inputType="number"
+                android:digits="0123456789"
+                android:id="@+id/EditText_Year"
+                android:maxLength="4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:hint="생년월일(4자리)"
+                android:textSize="13sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:entries="@array/spinner_array"
+                android:layout_weight="0.275"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/Spinner_Month"/>
+
+            <Spinner
+                android:entries="@array/spinner_array"
+                android:layout_weight="0.275"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/Spinner_Day"/>
         </LinearLayout>
+
+        <EditText
+            android:inputType="number"
+            android:digits="0123456789"
+            android:id="@+id/EditText_Phone"
+            android:maxLength="11"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="0.3"
+            android:hint="휴대전화번호"
+            android:textSize="15sp"
+            android:background="@null"
+            />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextView_Complete"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="가입하기"/>
 
 </LinearLayout>

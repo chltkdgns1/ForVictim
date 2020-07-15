@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_weight="0.2"
+        android:layout_width="0dp"
+        android:weightSum="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+        
+        <TextView
+            android:id="@+id/TextView_My_Data"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:layout_weight="0.15"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:text="내 정보"/>
+
+        <TextView
+            android:id="@+id/TextView_My_Data_Revise"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:layout_weight="0.15"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:text="정보 수정"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_weight="0.001"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"/>
+
+    <FrameLayout
+        android:id="@+id/Fragment_MyData"
+        android:layout_width="0dp"
+        android:layout_weight="0.799"
+        android:layout_height="match_parent" />
+    
+</LinearLayout>

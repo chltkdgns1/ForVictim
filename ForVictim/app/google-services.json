@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "544975668904",
+    "firebase_url": "https://forvictim-8cb46.firebaseio.com",
+    "project_id": "forvictim-8cb46",
+    "storage_bucket": "forvictim-8cb46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544975668904:android:d5ccfeda80e51f0bcbe49d",
+        "android_client_info": {
+          "package_name": "com.example.forvictim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544975668904-frp9mr5929t4fm4apgfh8ca6avm4ed5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.forvictim",
+            "certificate_hash": "abc3c59f3d930f98606ea0f2fbdf3f39e1e41448"
+          }
+        },
+        {
+          "client_id": "544975668904-a1qhpqr20tum72kb83h985ud895rmfsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-_gUDsrbqhXJ1z_s4UxUkYLW-QfPf1ck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544975668904-a1qhpqr20tum72kb83h985ud895rmfsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/button_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:weightSum="1"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/CircleImageView_Profile"
+            android:src="@drawable/sea"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:weightSum="1"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/TextView_My_Data_Name"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="이름"
+                android:textSize="20sp"
+                android:layout_weight="0.4"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Lora / Gps Module"
+                android:textSize="15sp"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text=" 내 정보 "
+                android:textSize="15sp"
+                android:layout_weight="0.3"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/button_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+        <TextView
+            android:id="@+id/TextView_My_Data_Sx"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남성 / 여성"
+            />
+
+        <TextView
+            android:id="@+id/TextView_My_Data_Age"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="나이"
+            />
+
+        <TextView
+            android:id="@+id/TextView_My_Data_date"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="생년월일"
+            />
+
+        <TextView
+            android:id="@+id/TextView_My_Data_Phone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="전화번호"
+            />
+    </LinearLayout>
+</LinearLayout>
