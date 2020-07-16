@@ -50,7 +50,7 @@ public class MyDataActivity extends AppCompatActivity {
         TextView_My_Data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_MyData,myDataReviseFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_MyData,myDataFragment ).commit();
             }
         });
 

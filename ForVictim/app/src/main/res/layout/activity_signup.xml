@@ -181,11 +181,49 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_weight="0.3"
             android:hint="휴대전화번호"
             android:textSize="15sp"
             android:background="@null"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/EditText_Email"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:hint="이메일"
+                android:textSize="15sp"
+                android:background="@null"
+                />
+
+            <TextView
+                android:id="@+id/TextView_Email_Overlap"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="이메일 인증"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/EditText_Email_Check"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="이메일 인증번호"
+            android:textSize="15sp"
+            android:background="@null"
+            />
+
     </LinearLayout>
 
     <TextView

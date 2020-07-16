@@ -5,4 +5,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원 정보 수정"
+        />
+
+    <LinearLayout
+        android:background="@drawable/button_background"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/EditText_Withdrawal_Pass"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:hint="비밀번호 변경"
+            android:background="@null"
+            />
+
+        <EditText
+            android:inputType="textPassword"
+            android:id="@+id/EditText_Withdrawal_Pass_Again"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="비밀번호 재확인"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:background="@drawable/button_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/EditText_Withdrawal_Name"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="이름"
+            android:background="@null"
+            />
+
+        <LinearLayout
+            android:background="@drawable/button_background"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/button_background"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/TextView_Withdrawal_Man"
+                    android:gravity="center"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:text="남자"
+                    />
+                <TextView
+                    android:id="@+id/TextView_Withdrawal_Girl"
+                    android:gravity="center"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:text="여자"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:text="생일"/>
+
+            <EditText
+                android:inputType="number"
+                android:digits="0123456789"
+                android:id="@+id/EditText_Withdrawal_Year"
+                android:maxLength="4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:hint="생년월일(4자리)"
+                android:textSize="13sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:entries="@array/spinner_array"
+                android:layout_weight="0.275"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/Spinner_Withdrawal_Month"/>
+
+            <Spinner
+                android:entries="@array/spinner_array"
+                android:layout_weight="0.275"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/Spinner_Withdrawal_Day"/>
+        </LinearLayout>
+
+        <EditText
+            android:inputType="number"
+            android:digits="0123456789"
+            android:id="@+id/EditText_Withdrawal_Phone"
+            android:maxLength="11"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="0.3"
+            android:hint="휴대전화번호"
+            android:textSize="15sp"
+            android:background="@null"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextView_Withdrawal_Complete"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="변경완료"/>
+
 </LinearLayout>

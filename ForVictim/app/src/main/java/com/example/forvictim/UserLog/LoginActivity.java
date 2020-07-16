@@ -58,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
                 final String id = EditText_Input_Id.getText().toString();
                 final String pass = EditText_Input_Pass.getText().toString();
 
+                EditText_Input_Id.setText("");
+                EditText_Input_Pass.setText("");
+
                 if(id.isEmpty()) {
                     Toast.makeText(getApplicationContext(),"아이디를 입력해주세요",Toast.LENGTH_LONG).show();
                     return;

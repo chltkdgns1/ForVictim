@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.forvictim.GMailSender;
 import com.example.forvictim.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -44,11 +48,14 @@ public class SignUpActivity extends AppCompatActivity {
 
     // 뷰
     private Spinner Spinner_Month, Spinner_Day;
-    private TextView TextView_Man,TextView_Girl,TextView_Complete,TextView_Id_Overlap;
+    private TextView TextView_Man,TextView_Girl,TextView_Complete,TextView_Id_Overlap,TextView_Email_Overlap;
     private EditText EditText_Id,EditText_Pass,EditText_Pass_Again;
-    private EditText EditText_Name,EditText_Year,EditText_Phone;
+    private EditText EditText_Name,EditText_Year,EditText_Phone,EditText_Email,EditText_Email_Check;
 
     // 데이터 베이스
+
+    private String emailrev = "";
+    private boolean mailcheck = false; // 이메일 인증이 확인되었는지 확인
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -65,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
+        TextView_Email_Overlap = findViewById(R.id.TextView_Email_Overlap);
         TextView_Id_Overlap = findViewById(R.id.TextView_Id_Overlap);
         TextView_Man = findViewById(R.id.TextView_Man);
         TextView_Girl = findViewById(R.id.TextView_Girl);
@@ -74,13 +82,16 @@ public class SignUpActivity extends AppCompatActivity {
         TextView_Girl.setClickable(true);
         TextView_Complete.setClickable(true);
         TextView_Id_Overlap.setClickable(true);
+        TextView_Email_Overlap.setClickable(true);
 
         EditText_Id = findViewById(R.id.EditText_Id);
         EditText_Pass = findViewById(R.id.EditText_Pass);
         EditText_Pass_Again = findViewById(R.id.EditText_Pass_Again);
         EditText_Name = findViewById(R.id.EditText_Name);
-        EditText_Year = findViewById(R.id.EditText_Name);
+        EditText_Year = findViewById(R.id.EditText_Year );
         EditText_Phone = findViewById(R.id.EditText_Phone);
+        EditText_Email = findViewById(R.id.EditText_Email);
+        EditText_Email_Check = findViewById(R.id.EditText_Email_Check);
 
         TextView_Man.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +107,37 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        TextView_Email_Overlap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = EditText_Email.getText().toString();
+
+                System.out.println("클릭됬음?ㅇㅁㄴㅇㅁㅁㅇㅁㅇㅁㅇㅁㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+                if(email.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                try {
+                    GMailSender gMailSender = new GMailSender("AppEmailSenders@gmail.com", "gkftndlTek12!");
+                    emailrev = gMailSender.getEmailCode();
+                    gMailSender.sendMail("For 조난자 앱 이메일 인증번호입니다.", emailrev, email);
+                    Toast.makeText(getApplicationContext(), "이메일로 인증번호가 전송되었습니다.", Toast.LENGTH_LONG).show();
+                }
+                catch (SendFailedException e) {
+                    Toast.makeText(getApplicationContext(), "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                } catch (MessagingException e) {
+                    Toast.makeText(getApplicationContext(), "인터넷 연결을 확인해주십시오", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        });
+
         TextView_Complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,6 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String name = EditText_Name.getText().toString();
                 String year = EditText_Year.getText().toString();
                 String phone = EditText_Phone.getText().toString();
+                String email = EditText_Email.getText().toString();
 
                 if(id.isEmpty()){
                     Toast.makeText(getApplicationContext(),"아이디를 입력해주세요",Toast.LENGTH_LONG).show();
@@ -151,15 +194,30 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(email.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(!emailrev.equals(EditText_Email_Check.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"이메일을 인증해주세요",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 UserData data = new UserData();
                 data.setId(id);
                 data.setName(name);
                 data.setYear(year);
-                data.setYear(phone);
+                data.setPhone(phone);
                 data.setDay(day);
                 data.setMonth(month);
                 data.setPass(pass);
                 data.setSx(sx);
+                data.setName(email);
+
+                System.out.println("년 : " + year);
+                System.out.println("월 : " + month);
+                System.out.println("일 : " + day);
 
                 databaseReference.child("users").child(id).setValue(data);
 
@@ -184,8 +242,6 @@ public class SignUpActivity extends AppCompatActivity {
                            check =true;
                            Toast.makeText(getApplicationContext(),"중복 확인되었습니다.",Toast.LENGTH_LONG).show();
                        }
-
-
                     }
 
                     @Override
@@ -236,7 +292,7 @@ public class SignUpActivity extends AppCompatActivity {
         Spinner_Day.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                month = (position + 1);
+                day = (position + 1);
             }
 
             @Override

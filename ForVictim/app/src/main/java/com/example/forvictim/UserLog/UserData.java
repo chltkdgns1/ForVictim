@@ -6,10 +6,17 @@ public class UserData {
     private String id;
     private String phone;
     private String year;
+    private String email;
     private int month;
     private int day;
     private int sx;
 
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public String getName() {
         return name;
     }
