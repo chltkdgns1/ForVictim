@@ -110,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
         TextView_Email_Overlap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = EditText_Email.getText().toString();
+                final String email = EditText_Email.getText().toString();
 
                 System.out.println("클릭됬음?ㅇㅁㄴㅇㅁㅁㅇㅁㅇㅁㅇㅁㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
                 if(email.isEmpty()) {
@@ -118,22 +118,43 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                try {
-                    GMailSender gMailSender = new GMailSender("AppEmailSenders@gmail.com", "gkftndlTek12!");
-                    emailrev = gMailSender.getEmailCode();
-                    gMailSender.sendMail("For 조난자 앱 이메일 인증번호입니다.", emailrev, email);
-                    Toast.makeText(getApplicationContext(), "이메일로 인증번호가 전송되었습니다.", Toast.LENGTH_LONG).show();
-                }
-                catch (SendFailedException e) {
-                    Toast.makeText(getApplicationContext(), "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
-                } catch (MessagingException e) {
-                    Toast.makeText(getApplicationContext(), "인터넷 연결을 확인해주십시오", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                final String token = email.replace("@", " ").replace(".", " ");
+                databaseReference.child("signuped").child(token).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Toast.makeText(getApplicationContext(),"이미 등록된 이메일 번호입니다.",Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    GMailSender gMailSender = new GMailSender("AppEmailSenders@gmail.com", "gkftndlTek12!");
+                                    emailrev = gMailSender.getEmailCode();
+                                    gMailSender.sendMail("For 조난자 앱 이메일 인증번호입니다.", emailrev, email);
+                                    Toast.makeText(getApplicationContext(), "이메일로 인증번호가 전송되었습니다.", Toast.LENGTH_LONG).show();
+                                }
+                                catch (SendFailedException e) {
+                                    //Toast.makeText(getApplicationContext(), "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                                } catch (MessagingException e) {
+                                    //Toast.makeText(getApplicationContext(), "인터넷 연결을 확인해주십시오", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    //Toast.makeText(getApplicationContext(), "에러에러", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // 디비를 가져오던중 에러 발생 시
+                        Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+                    }
+                });
 
             }
         });
@@ -213,13 +234,15 @@ public class SignUpActivity extends AppCompatActivity {
                 data.setMonth(month);
                 data.setPass(pass);
                 data.setSx(sx);
-                data.setName(email);
+                data.setEmail(email);
 
                 System.out.println("년 : " + year);
                 System.out.println("월 : " + month);
                 System.out.println("일 : " + day);
 
                 databaseReference.child("users").child(id).setValue(data);
+                final String token = email.replace("@", " ").replace(".", " ");
+                databaseReference.child("signuped").child(token).setValue(1);
 
                 Toast.makeText(getApplicationContext(),"회원가입이 완료되었습니다.",Toast.LENGTH_LONG).show();
                 finish();
