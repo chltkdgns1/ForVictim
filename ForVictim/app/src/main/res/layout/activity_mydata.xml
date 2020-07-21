@@ -33,6 +33,16 @@
             android:layout_height="0dp"
             android:textSize="15sp"
             android:text="정보 수정"/>
+
+        <TextView
+            android:id="@+id/TextView_My_Data_Out"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:layout_weight="0.15"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="15sp"
+            android:text="회원 탈퇴"/>
         
     </LinearLayout>
     

@@ -54,7 +54,6 @@ public class MyDataFragment extends Fragment{
         return rootView;
     }
 
-
     public String cvt(int number){
         String ans = "";
         while(number > 0){

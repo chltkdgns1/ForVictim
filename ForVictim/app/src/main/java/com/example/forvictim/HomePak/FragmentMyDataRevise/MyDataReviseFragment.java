@@ -36,7 +36,6 @@ public class MyDataReviseFragment extends Fragment {
     private Context con;
     private View rootView;
 
-
     // 스피너 데이터
     private List<String> monDate, dayDate;
 

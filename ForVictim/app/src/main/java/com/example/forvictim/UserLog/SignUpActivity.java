@@ -1,6 +1,8 @@
 package com.example.forvictim.UserLog;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,6 +61,16 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
+    public Handler handlerPushMessage = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) { // 네이버 검색했다
+                Toast.makeText(getApplicationContext(), "이메일로 인증번호가 전송되었습니다.", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +146,10 @@ public class SignUpActivity extends AppCompatActivity {
                                     GMailSender gMailSender = new GMailSender("AppEmailSenders@gmail.com", "gkftndlTek12!");
                                     emailrev = gMailSender.getEmailCode();
                                     gMailSender.sendMail("For 조난자 앱 이메일 인증번호입니다.", emailrev, email);
-                                    Toast.makeText(getApplicationContext(), "이메일로 인증번호가 전송되었습니다.", Toast.LENGTH_LONG).show();
+
+                                    Message msg = Message.obtain();
+                                    msg.what = 1;
+                                    handlerPushMessage.sendMessage(msg);
                                 }
                                 catch (SendFailedException e) {
                                     //Toast.makeText(getApplicationContext(), "이메일 형식이 잘못되었습니다.", Toast.LENGTH_SHORT).show();
